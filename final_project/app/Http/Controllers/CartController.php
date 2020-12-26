@@ -22,7 +22,7 @@ class CartController extends Controller
 
 
 
-        return redirect()->route('cart.index');
+        return redirect()->route('home');
 
 
     }
@@ -38,5 +38,23 @@ class CartController extends Controller
         Cart::session(auth()->id())->remove($itemID);
 
         return back();
+    }
+
+    public function update($rowId)
+    {
+        Cart::session(auth()->id())->update($rowId,[
+            'quantity' => array(
+                'relative' => false,
+                'value' => request('quantity')
+            ),
+        ]);
+
+        return back();
+
+    }
+
+    public function checkout()
+    {
+        return view('cart.checkout');
     }
 }

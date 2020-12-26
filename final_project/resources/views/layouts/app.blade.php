@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -41,7 +42,16 @@
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cart.index') }}">{{ __('Cart()') }}</a>
+                            <a class="nav-link p-0 m-0" href="{{ route('cart.index') }}">
+                                <i class="fas fa-shopping-cart fa-2x"></i>
+                                <div class="badge badge-danger">
+                                    @auth
+                                    {{Cart::session(auth()->id())->getContent()->count()}}
+                                    @else
+                                    0
+                                    @endauth
+                                </div>
+                            </a>
                         </li>
                         <!-- Authentication Links -->
                         @guest

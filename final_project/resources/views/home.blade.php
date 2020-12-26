@@ -11,7 +11,8 @@
                     <img class="card-img-top" src="{{asset('sample.jpeg')}}" alt="Card image cap" style="max-height: 100%; max-width:100%">
                         <div class="card-body">
                             <h4 class="card-title">{{$product->name}}</h4>
-                            <p class="card-text">{{$product->price}}</p>
+                            <p>{{$product->description}}</p>
+                            <p class="card-text">${{$product->price}}</p>
                         </div>
                         <div class="card-body">
                         <a href="{{ route('cart.add', $product->id) }}" class="card-link">Add to cart</a>
