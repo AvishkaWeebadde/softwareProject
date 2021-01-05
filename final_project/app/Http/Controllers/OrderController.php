@@ -85,9 +85,15 @@ class OrderController extends Controller
             $order->items()->attach($item->id, ['price'=> $item->price, 'quantity'=> $item->quantity]);
         }
 
+        if(request('payment_method') == 'paypal') {
+            //redirect to paypal
+            return redirect()->route('paypal.checkout');
+
+        }
+
 
         //empty cart
-        \Cart::session(auth()->id())->clear();
+        //\Cart::session(auth()->id())->clear();
 
         //send email to customer
         return "Order has been placed";

@@ -53,15 +53,6 @@
 
         </div>
 
-        <div class="form-check">
-            <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="payment_method" id="" value="card">
-                Card
-
-            </label>
-
-        </div>
-
 
         <button type="submit" class="btn btn-primary mt-3">Place Order</button>
 

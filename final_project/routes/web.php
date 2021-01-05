@@ -28,4 +28,8 @@ Route::get('/cart/checkout', [App\Http\Controllers\CartController::class, 'check
 
 Route::resource('orders', 'App\Http\Controllers\OrderController');
 
+Route::get('paypal/checkout', [App\Http\Controllers\PayPalController::class, 'getExpressCheckout'])->name('paypal.checkout');
+Route::get('paypal/checkout-success', [App\Http\Controllers\PayPalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
+Route::get('paypal/checkout-cancel', [App\Http\Controllers\PayPalController::class, 'cancelPage'])->name('paypal.cancel');
+
 
