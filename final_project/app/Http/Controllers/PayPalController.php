@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\ExpressCheckout;
+use App\Models\Order;
 
 class PayPalController extends Controller
 {
-    public function getExpressCheckout()
+    public function getExpressCheckout($orderId)
     {
-        $checkoutData = $this->checkoutData();
+        $checkoutData = $this->checkoutData($orderId);
 
         $provider = new ExpressCheckout();
 
@@ -18,7 +19,7 @@ class PayPalController extends Controller
         return redirect($response['paypal_link']);
     }
 
-    private function checkoutData()
+    private function checkoutData($orderId)
     {
         $cart = \Cart::session(auth()->id());
 
@@ -35,7 +36,7 @@ class PayPalController extends Controller
 
         $checkoutData = [
             'items' => $cartItems,
-            'return_url' => route('paypal.success'),
+            'return_url' => route('paypal.success', $orderId),
             'cancel_url' => route('paypal.cancel'),
             'invoice_id' => uniqid(),
             'invoice_description' => " Order description ",
@@ -52,20 +53,36 @@ class PayPalController extends Controller
         dd('payment failed');
     }
 
-    public function getExpressCheckoutSuccess(Request $request)
+    public function getExpressCheckoutSuccess(Request $request, $orderId)
     {
         $token = $request->get('token');
         $payerId = $request->get('PayerID');
         $provider = new ExpressCheckout();
         $response = $provider->getExpressCheckoutDetails($token);
-        $checkoutData = $this->checkoutData();
+        $checkoutData = $this->checkoutData($orderId);
 
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
 
             // Perform transaction on PayPal
             $payment_status = $provider->doExpressCheckoutPayment($checkoutData, $token, $payerId);
             $status = $payment_status['PAYMENTINFO_0_PAYMENTSTATUS'];
+
+            if(in_array($status, ['Completed','Processed'])) {
+                $order = Order::find($orderId);
+                $order->is_paid = 1;
+                $order->save();
+
+                //send mail
+
+                //Mail::to($order->user->email)->send(new OrderPaid($order));
+
+                \Cart::session(auth()->id())->clear();
+
+                return redirect()->route('home')->withMessage('Payment successful!');
+            }
         }
+
+        return redirect('/')->withMessage('Payment unsuccessful!');
 
         dd('payment successful');
     }

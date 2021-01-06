@@ -75,6 +75,13 @@ class OrderController extends Controller
 
         $order->user_id = auth()->id();
 
+        if(request('payment_method') == 'paypal') {
+            $order->payment_method = 'paypal';
+            //redirect to paypal
+            //return redirect()->route('paypal.checkout',  $order->id);
+
+        }
+
         $order->save();
 
         //save order items
@@ -86,17 +93,19 @@ class OrderController extends Controller
         }
 
         if(request('payment_method') == 'paypal') {
+            //$order->payment_method = 'paypal';
             //redirect to paypal
-            return redirect()->route('paypal.checkout');
+            return redirect()->route('paypal.checkout',  $order->id);
 
         }
 
 
         //empty cart
-        //\Cart::session(auth()->id())->clear();
+        \Cart::session(auth()->id())->clear();
 
         //send email to customer
-        return "Order has been placed";
+        //return "Order has been placed";
+        return redirect()->route('home')->withMessage('Order has been placed');
 
     }
 
