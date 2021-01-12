@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use App\Models\Order;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderPaid;
 
 class PayPalController extends Controller
 {
@@ -73,6 +75,7 @@ class PayPalController extends Controller
                 $order->save();
 
                 //send mail
+                Mail::to($order->user->email)->send(new OrderPaid($order));
 
                 //Mail::to($order->user->email)->send(new OrderPaid($order));
 
