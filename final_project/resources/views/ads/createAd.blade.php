@@ -8,7 +8,7 @@
     <form name="f"  enctype="multipart/form-data" method="POST" action="{{route('ads.store')}}">
         @csrf
     <p> <img id="uploadPreview" style="width: 300px; height: 200px;" />
-        <input  type="file" id="cover_img" name="image" onchange="PreviewImage();" class="form-control" placeholder="image here"/>
+        <input  type="file" id="cover_img" name="image" onchange="loadFile(event)" class="form-control" placeholder="image here"/>
     </p>
     <p>Category:
        <select name="category">
@@ -45,6 +45,17 @@
         };
 
     </script>
+
+<script>
+    var loadFile = function(event) {
+      var reader = new FileReader();
+      reader.onload = function(){
+        var output = document.getElementById('uploadPreview');
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    };
+  </script>
 
 
 @endsection
