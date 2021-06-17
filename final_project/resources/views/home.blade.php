@@ -8,11 +8,11 @@
         @foreach ($allProducts as $product)
             <div class="col-4">
                 <div class="card">
-                    <img class="card-img-top" src="{{asset('sample.jpeg')}}" alt="Card image cap" style="max-height: 100%; max-width:100%">
+                    <img class="card-img-top" src="{{asset('upload/adImages')}}/{{$product->cover_img}}" alt="Card image cap" style="width: 300px; height: 200px;">
                         <div class="card-body">
-                            <h4 class="card-title">{{$product->name}}</h4>
-                            <p>{{$product->description}}</p>
-                            <p class="card-text">${{$product->price}}</p>
+                            <h4 class="card-title">{{$product->description}}</h4>
+                            <p>Unit price : {{$product->price}}</p>
+                            <p class="card-text">Contact number : {{$product->phone_no}}</p>
                         </div>
                         <div class="card-body">
                         <a href="{{ route('cart.add', $product->id) }}" class="card-link">Add to cart</a>

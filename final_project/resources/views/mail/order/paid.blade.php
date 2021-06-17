@@ -25,7 +25,7 @@ Thank you for the purchase
 Total : {{$order->grand_total}}
 
 @component('mail::button', ['url' => ''])
-Button Text
+Contact us
 @endcomponent
 
 Thanks,<br>

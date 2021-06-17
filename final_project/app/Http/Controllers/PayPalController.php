@@ -60,8 +60,9 @@ class PayPalController extends Controller
         $token = $request->get('token');
         $payerId = $request->get('PayerID');
         $provider = new ExpressCheckout();
-        $response = $provider->getExpressCheckoutDetails($token);
         $checkoutData = $this->checkoutData($orderId);
+
+        $response = $provider->getExpressCheckoutDetails($token);
 
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
 
@@ -75,19 +76,19 @@ class PayPalController extends Controller
                 $order->save();
 
                 //send mail
+
                 Mail::to($order->user->email)->send(new OrderPaid($order));
 
-                //Mail::to($order->user->email)->send(new OrderPaid($order));
-
                 \Cart::session(auth()->id())->clear();
-
                 return redirect()->route('home')->withMessage('Payment successful!');
+
             }
+
         }
 
-        return redirect('/')->withMessage('Payment unsuccessful!');
+        return redirect()->route('home')->withError('Payment UnSuccessful! Something went wrong!');
 
-        dd('payment successful');
+
     }
 
 }

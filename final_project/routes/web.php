@@ -32,6 +32,12 @@ Route::get('paypal/checkout/{order}', [App\Http\Controllers\PayPalController::cl
 Route::get('paypal/checkout-success/{order}', [App\Http\Controllers\PayPalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
 Route::get('paypal/checkout-cancel', [App\Http\Controllers\PayPalController::class, 'cancelPage'])->name('paypal.cancel');
 
+//Route::get('/activity', [App\Http\Controllers\ActivityController::class, 'profile'])->name('activity.profile');
+
+Route::resource('ads', 'App\Http\Controllers\AdController');
+
+Route::post('/adsupdate', [App\Http\Controllers\AdController::class, 'update'])->name('adsupdate');
+Route::get('adsdestroy/{c}/', [App\Http\Controllers\AdController::class, 'destroy'])->name('adsdestroy');
 
 
 

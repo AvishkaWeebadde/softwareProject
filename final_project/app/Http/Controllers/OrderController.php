@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderPaid;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -104,6 +105,10 @@ class OrderController extends Controller
         \Cart::session(auth()->id())->clear();
 
         //send email to customer
+        //send mail
+
+        Mail::to($order->user->email)->send(new OrderPaid($order));
+
         //return "Order has been placed";
         return redirect()->route('home')->withMessage('Order has been placed');
 
