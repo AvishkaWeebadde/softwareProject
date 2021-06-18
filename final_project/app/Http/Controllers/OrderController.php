@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderPaid;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {

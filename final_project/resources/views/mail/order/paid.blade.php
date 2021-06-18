@@ -5,7 +5,8 @@ Thank you for the purchase
 
 <table class="table">
     <thead>
-        <tr>
+        <tr><th>Order id</th>
+            <th>Product name</th>
             <th>Product name</th>
             <th>quantity</th>
             <th>price</th>
@@ -21,8 +22,8 @@ Thank you for the purchase
         @endforeach
     </tbody>
 </table>
-
-Total : {{$order->grand_total}}
+Order ID :{{$order->order_number}} <br>
+Total    : {{$order->grand_total}}
 
 @component('mail::button', ['url' => ''])
 Contact us

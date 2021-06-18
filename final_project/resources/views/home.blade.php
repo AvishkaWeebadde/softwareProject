@@ -1,21 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container text-center">
-    <h2>products</h2>
-    <div class="row">
+<div class="container ">
+    <h2 class="text-center">products</h2>
+    <div class="row ">
 
         @foreach ($allProducts as $product)
-            <div class="col-4">
+            <div class="col-4 ">
                 <div class="card">
-                    <img class="card-img-top" src="{{asset('upload/adImages')}}/{{$product->cover_img}}" alt="Card image cap" style="width: 300px; height: 200px;">
-                        <div class="card-body">
-                            <h4 class="card-title">{{$product->description}}</h4>
-                            <p>Unit price : {{$product->price}}</p>
-                            <p class="card-text">Contact number : {{$product->phone_no}}</p>
+                    <div style="width:100%; text-align:center">
+                        <img class="card-img-top " src="{{asset('upload/adImages')}}/{{$product->cover_img}}" alt="Card image cap" style="width: 300px; height: 200px;">
+                    </div>
+                    <div class="card-body">
+
+                            <h4 class="card-title text-muted text-center">{{$product->description}} {{$product->name}}</h4>
+                            <p class="card-text">Unit price  :{{$product->price}}</p>
+                            <p class="card-text">Contact number: {{$product->phone_no}}</p>
                         </div>
                         <div class="card-body">
-                        <a href="{{ route('cart.add', $product->id) }}" class="card-link">Add to cart</a>
+                        <a class="btn btn-primary" href="{{ route('cart.add', $product->id) }}" class="card-link">Add to cart</a>
                             <!-- <a href="#" class="card-link">Another link</a> -->
                         </div>
                 </div>

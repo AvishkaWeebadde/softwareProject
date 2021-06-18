@@ -8,7 +8,9 @@
         @foreach ($product as $item)
         <div class="col-4">
             <div class="card">
+                <div style="width:100%; text-align:center">
                 <img class="card-img-top" src="{{asset('upload/adImages')}}/{{$item->cover_img}}" alt="Card image cap" style="width: 300px; height: 200px;">
+                </div>
                <form action="adsupdate" method="post">
                    @csrf
                     <div class="card-body">
