@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+<a  style="float:right;" href="{{route('report')}}" class="btn btn-primary">Make a Report</a>
+<a  style="float:right;margin-right:10px;" href="{{route('ads.create')}}" class="btn btn-primary">create an Ad</a>
+
 <div class="container text-center">
-    <h1>MY POSTS <a href="{{route('ads.create')}}" class="btn btn-primary">create an Ad</a><hr></h1>
+    <h1>MY POSTS </h1><hr>
     <div class="row">
 
         @foreach ($product as $item)
         <div class="col-4">
-            <div class="card">
+            <div class="card" style="margin-bottom: 20px;">
                 <div style="width:100%; text-align:center">
                 <img class="card-img-top" src="{{asset('upload/adImages')}}/{{$item->cover_img}}" alt="Card image cap" style="width: 300px; height: 200px;">
                 </div>
@@ -31,4 +34,5 @@
 
     </div>
 </div>
+
 @endsection

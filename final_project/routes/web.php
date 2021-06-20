@@ -39,6 +39,9 @@ Route::resource('ads', 'App\Http\Controllers\AdController');
 Route::post('/adsupdate', [App\Http\Controllers\AdController::class, 'update'])->name('adsupdate');
 Route::get('adsdestroy/{c}/', [App\Http\Controllers\AdController::class, 'destroy'])->name('adsdestroy');
 
+Route::get('/report', [App\Http\Controllers\ActivityController::class, 'report'])->name('report');
+Route::post('/sendReport', [App\Http\Controllers\ActivityController::class, 'sendReport'])->name('sendReport');
+
 
 
 Route::group(['prefix' => 'admin'], function () {

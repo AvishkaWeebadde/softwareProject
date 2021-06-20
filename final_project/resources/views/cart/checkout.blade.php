@@ -12,27 +12,27 @@
 
             <div class="form-group">
                 <label for=""><kbd>Full Name</kbd></label>
-                <input type="text" name="shipping_fullname" id="" class="form-control">
+                <input type="text" name="shipping_fullname" id="" class="form-control" required="required">
             </div>
 
             <div class="form-group">
                 <label for=""><kbd>Province</kbd></label>
-                <input type="text" name="shipping_province" id="" class="form-control">
+                <input type="text" name="shipping_province" id="" class="form-control" required="required">
             </div>
 
             <div class="form-group">
                 <label for=""><kbd>City</kbd></label>
-                <input type="text" name="shipping_city" id="" class="form-control">
+                <input type="text" name="shipping_city" id="" class="form-control" required="required">
             </div>
 
             <div class="form-group">
                 <label for=""><kbd>Address</kbd></label>
-                <input type="text" name="shipping_address" id="" class="form-control">
+                <input type="text" name="shipping_address" id="" class="form-control" required="required">
             </div>
 
             <div class="form-group">
                 <label for=""><kbd>Mobile</kbd></label>
-                <input type="text" name="shipping_phone" id="" class="form-control">
+                <input type="text" name="shipping_phone" id="" class="form-control" required="required">
             </div>
 
             {{--<h4>Payment option</h4>--}}

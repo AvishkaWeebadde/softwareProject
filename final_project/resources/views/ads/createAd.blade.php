@@ -7,7 +7,7 @@
     <form name="f"  enctype="multipart/form-data" method="POST" action="{{route('ads.store')}}">
         @csrf
     <div class="text-center form-group"> <img id="uploadPreview" style="width: 300px; height: 200px;" />
-        <input  type="file" id="cover_img" name="image" onchange="loadFile(event)" class="form-control" placeholder="image here"/>
+        <input  type="file" id="cover_img" name="image" onchange="loadFile(event)" class="form-control" placeholder="image here" required="required"/>
     </div>
     <div class=" form-group">Category:
        <select name="category">
@@ -21,12 +21,12 @@
         <option value="other">Other Hardware</option>
        </select>
     </div>
-    <div class="form-group"><input type="text" name="name"  placeholder="Item Name" class="form-control"></div>
-    <div class="form-group"><input type="text" name="description"  placeholder="Brand/Model/Capacity-other info" class="form-control"></div>
-    <div class="form-group"><input type="text" name="phone_no"  placeholder="Contact number" class="form-control"></div>
-    <div class="form-group"><input type="text" name="price" placeholder="Enter the unit price" class="form-control"></div>
-    <div class="form-group"><input type="text" name="quantity" placeholder="Enter the Quantity" class="form-control"></div>
-    <p class="col-sm-4"><button type="submit" class="btn btn-primary">Submit</button></p>
+    <div class="form-group"><input type="text" name="name"  placeholder="Item Name" class="form-control" required="required"></div>
+    <div class="form-group"><input type="text" name="description"  placeholder="Brand/Model/Capacity-other info" class="form-control" required="required"></div>
+    <div class="form-group"><input type="text" name="phone_no"  placeholder="Contact number" class="form-control" required="required"></div>
+    <div class="form-group"><input type="text" name="price" placeholder="Enter the unit price" class="form-control" required="required"></div>
+    <div class="form-group"><input type="text" name="quantity" placeholder="Enter the Quantity" class="form-control" required="required"></div>
+    <div class=" form-group" style="text-align-last: center;"><button type="submit" class="btn btn-primary">Create Advertisement</button></div>
     </form>
 
 

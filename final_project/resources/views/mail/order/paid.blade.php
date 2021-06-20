@@ -5,11 +5,11 @@ Thank you for the purchase
 
 <table class="table">
     <thead>
-        <tr><th>Order id</th>
-            <th>Product name</th>
+        <tr>
             <th>Product name</th>
             <th>quantity</th>
             <th>price</th>
+            <th>product id</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@ Thank you for the purchase
         @endforeach
     </tbody>
 </table>
-Order ID :{{$order->order_number}} <br>
+Order ID : {{$order->order_number}} <br>
 Total    : {{$order->grand_total}}
 
 @component('mail::button', ['url' => ''])

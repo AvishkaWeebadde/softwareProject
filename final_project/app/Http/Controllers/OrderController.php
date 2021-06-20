@@ -7,6 +7,7 @@ use App\Mail\OrderPaid;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Products;
 
 class OrderController extends Controller
 {
@@ -111,6 +112,22 @@ class OrderController extends Controller
         Mail::to($order->user->email)->send(new OrderPaid($order));
 
         //return "Order has been placed";
+
+        foreach($order->items as $item)
+        {
+            //$result = DB::Table('products')->select('quantity')->where('id', $item->id)->get();
+            $id = $item->id;
+            //$result = Products::find($id, ['quantity']);
+            $result = Products::where('id', $id)->value('quantity');
+            //dd($result);
+
+            DB::table('products')->where('id', $item->id)->update([
+
+                'quantity'=> $result -$item->pivot->quantity,
+            ]);
+        }
+
+
         return redirect()->route('home')->withMessage('Order has been placed');
 
     }
