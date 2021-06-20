@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,8 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Products::take(20)->get();
-        //$products = Products::latest()->paginate(5);
+        //$products = Products::take(20)->get();
+        //$products = Products::latest()->get();
+        $products = DB::table('products')->orderBy('id','desc')->get();
+        //$products = Products::latest()->get();
         return view('home',['allProducts'=> $products]);
     }
 }

@@ -3,13 +3,12 @@
 
 Thank you for the purchase
 
-<table class="table">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>Product name</th>
             <th>quantity</th>
             <th>price</th>
-            <th>product id</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +25,7 @@ Order ID : {{$order->order_number}} <br>
 Total    : {{$order->grand_total}}
 
 @component('mail::button', ['url' => ''])
-Contact us
+Shop Again
 @endcomponent
 
 Thanks,<br>
